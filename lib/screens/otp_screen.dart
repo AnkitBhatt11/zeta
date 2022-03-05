@@ -38,7 +38,7 @@ class _OtpScreenState extends State<OtpScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(
-              height: 162 * _heightScale,
+              height: 115 * _heightScale,
             ),
             Image.asset('assets/otp.png'),
             SizedBox(
