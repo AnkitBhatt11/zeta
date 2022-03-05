@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:sliding_up_panel/sliding_up_panel.dart';
+import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 import 'package:zeta/main.dart';
 import 'package:zeta/themes/color.dart';
 
@@ -14,7 +16,10 @@ class HoemScreen extends StatefulWidget {
 }
 
 class _HoemScreenState extends State<HoemScreen> {
+
   bool islo = false;
+
+  DateTime dt = DateTime.now();
   @override
   Widget build(BuildContext context) {
     const double kDesignWidth = 375;
@@ -50,7 +55,28 @@ class _HoemScreenState extends State<HoemScreen> {
           )
         ],
       ),
-      body: Column(
+      body: SlidingUpPanel(
+        body: body(),
+        panelSnapping: true,
+        maxHeight: 758 * _heightScale,
+        minHeight: 240 * _heightScale,
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(_widthScale * 25),
+          topRight: Radius.circular(_widthScale * 25),
+        ),
+        collapsed: collapsed_container(),
+        panel: panel()
+      ),
+    );
+  }
+
+  body() {
+    const double kDesignWidth = 375;
+    const double kDesignHeight = 812;
+    double _widthScale = MediaQuery.of(context).size.width / kDesignWidth;
+    double _heightScale = MediaQuery.of(context).size.height / kDesignHeight;
+    return SingleChildScrollView(
+      child: Column(
         children: [
           SizedBox(height: 13 * _heightScale),
           Padding(
@@ -116,152 +142,200 @@ class _HoemScreenState extends State<HoemScreen> {
               ),
             ),
           ),
-          SizedBox(
-            height: 45 * _heightScale,
-          ),
 
           // showBottomSheet(context: context, builder: (context){
           //   return
           // })
+
+        ],
+      ),
+    );
+  }
+
+  collapsed_container() {
+    const double kDesignWidth = 375;
+    const double kDesignHeight = 812;
+    double _widthScale = MediaQuery.of(context).size.width / kDesignWidth;
+    double _heightScale = MediaQuery.of(context).size.height / kDesignHeight;
+    return Container(
+      height: 240 * _heightScale,
+      width: 375 * _widthScale,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.only(
+            bottomLeft: Radius.circular(0),
+            bottomRight: Radius.circular(0),
+            topLeft: Radius.circular(14),
+            topRight: Radius.circular(14)),
+        color: Color(0xFF4365A9),
+      ),
+      child: Column(
+        children: [
+          SizedBox(
+            height: 8 * _heightScale,
+          ),
+          Divider(
+            color: Colors.white,
+            thickness: 5 * _heightScale,
+            height: 5 * _heightScale,
+            indent: 138 * _widthScale,
+            endIndent: 138 * _widthScale,
+          ),
+          SizedBox(
+            height: 20 * _heightScale,
+          ),
           Container(
-            height: 240 * _heightScale,
-            width: 375 * _widthScale,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(0),
-                  bottomRight: Radius.circular(0),
-                  topLeft: Radius.circular(14),
-                  topRight: Radius.circular(14)),
-              color: Color(0xFF4365A9),
-            ),
-            child: Column(
-              children: [
-                SizedBox(
-                  height: 8 * _heightScale,
+            height: 50 * _heightScale,
+            width: 350 * _widthScale,
+            child: TextFormField(
+              style: GoogleFonts.notoSans(fontSize: 16.0, color: Colors.white),
+              decoration: InputDecoration(
+                border: OutlineInputBorder(
+                  borderSide: BorderSide.none,
+                  borderRadius: BorderRadius.circular(10.0)
                 ),
-                GestureDetector(
-                  onTap: () {
-                    bottom();
-                    // setState(() {
-                    //   islo = true;
-                    // });
-                  },
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Container(
-                        height: 5 * _heightScale,
-                        width: 100 * _widthScale,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: Colors.white),
-                      )
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  height: 20 * _heightScale,
-                ),
-                GestureDetector(
-                  onTap: () {
-                    bottom();
-                  },
-                  child: Container(
-                    height: 50 * _heightScale,
-                    width: 350 * _widthScale,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10), color: blue22),
-                    child: Row(
-                      children: [
-                        SizedBox(
-                          width: 10 * _widthScale,
-                        ),
-                        Stack(alignment: Alignment.center, children: [
-                          Container(
-                            height: 33 * _heightScale,
-                            width: 33 * _widthScale,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                color: Color(0xFF6282C2)),
-                          ),
-                          Icon(
-                            Icons.location_on_outlined,
-                            color: Colors.white,
-                            size: 18 * _widthScale,
-                          )
-                        ]),
-                        SizedBox(
-                          width: 8 * _widthScale,
-                        ),
-                        Text(
-                          'NDM 1, Netaji Subhash Palace, New....',
-                          style: GoogleFonts.notoSans(color: Colors.white),
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 10 * _heightScale,
-                ),
-                GestureDetector(
-                  onTap: () {
-                    bottom();
-                  },
-                  child: Container(
-                    height: 50 * _heightScale,
-                    width: 350 * _widthScale,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10), color: blue22),
-                    child: Row(
-                      children: [
-                        SizedBox(
-                          width: 10 * _widthScale,
-                        ),
-                        Stack(alignment: Alignment.center, children: [
-                          Container(
-                            height: 33 * _heightScale,
-                            width: 33 * _widthScale,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                color: Color(0xFF6282C2)),
-                          ),
-                          Icon(
-                            Icons.calendar_month,
-                            color: Colors.white,
-                            size: 18 * _widthScale,
-                          )
-                        ]),
-                        SizedBox(
-                          width: 8 * _widthScale,
-                        ),
-                        Text(
-                          'Wed, 16 Feb - 06:00 pm → Thu, 17 F...',
-                          style: GoogleFonts.notoSans(color: Colors.white),
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 20 * _heightScale,
-                ),
-                Container(
-                  height: 54 * _heightScale,
-                  width: 350 * _widthScale,
-                  alignment: Alignment.center,
+                fillColor: blue22,
+                filled: true,
+                prefixIcon: Container(
+                  margin: EdgeInsets.all(8 * _heightScale),
+                  height: 33 * _heightScale,
+                  width: 33 * _widthScale,
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(18),
-                      color: Colors.white),
-                  child: Text(
-                    'Find Cars',
-                    style: GoogleFonts.notoSans(
-                        color: Color(0xFF0C3867),
-                        fontSize: 16 * _widthScale,
-                        fontWeight: FontWeight.w400),
+                      borderRadius: BorderRadius.circular(10),
+                      color: Color(0xFF6282C2)),
+                  child: Icon(
+                    Icons.location_on_outlined,
+                    color: Colors.white,
+                    size: 18 * _widthScale,
                   ),
-                )
-              ],
+                ),
+              ),
+            ),
+          ),
+          // GestureDetector(
+          //   onTap: () {
+          //     panel();
+          //   },
+          //   child: Container(
+          //     height: 50 * _heightScale,
+          //     width: 350 * _widthScale,
+          //     decoration: BoxDecoration(
+          //         borderRadius: BorderRadius.circular(10), color: blue22),
+          //     child: Row(
+          //       children: [
+          //         SizedBox(
+          //           width: 10 * _widthScale,
+          //         ),
+          //         Stack(alignment: Alignment.center, children: [
+          //           Container(
+          //             height: 33 * _heightScale,
+          //             width: 33 * _widthScale,
+          //             decoration: BoxDecoration(
+          //                 borderRadius: BorderRadius.circular(10),
+          //                 color: Color(0xFF6282C2)),
+          //           ),
+          //           Icon(
+          //             Icons.location_on_outlined,
+          //             color: Colors.white,
+          //             size: 18 * _widthScale,
+          //           )
+          //         ]),
+          //         SizedBox(
+          //           width: 8 * _widthScale,
+          //         ),
+          //         Text(
+          //           'NDM 1, Netaji Subhash Palace, New....',
+          //           style: GoogleFonts.notoSans(color: Colors.white),
+          //         )
+          //       ],
+          //     ),
+          //   ),
+          // ),
+          SizedBox(
+            height: 10 * _heightScale,
+          ),
+          Container(
+            height: 50 * _heightScale,
+            width: 350 * _widthScale,
+            child: TextFormField(
+              style: GoogleFonts.notoSans(fontSize: 16.0, color: Colors.white),
+              decoration: InputDecoration(
+                border: OutlineInputBorder(
+                    borderSide: BorderSide.none,
+                    borderRadius: BorderRadius.circular(10.0)
+                ),
+                fillColor: blue22,
+                filled: true,
+                prefixIcon: Container(
+                  margin: EdgeInsets.all(8 * _heightScale),
+                  height: 33 * _heightScale,
+                  width: 33 * _widthScale,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: Color(0xFF6282C2)),
+                  child: Icon(
+                    Icons.calendar_month,
+                    color: Colors.white,
+                    size: 18 * _widthScale,
+                  ),
+                ),
+              ),
+            ),
+          ),
+          // GestureDetector(
+          //   onTap: () {
+          //     panel();
+          //   },
+          //   child: Container(
+          //     height: 50 * _heightScale,
+          //     width: 350 * _widthScale,
+          //     decoration: BoxDecoration(
+          //         borderRadius: BorderRadius.circular(10), color: blue22),
+          //     child: Row(
+          //       children: [
+          //         SizedBox(
+          //           width: 10 * _widthScale,
+          //         ),
+          //         Stack(alignment: Alignment.center, children: [
+          //           Container(
+          //             height: 33 * _heightScale,
+          //             width: 33 * _widthScale,
+          //             decoration: BoxDecoration(
+          //                 borderRadius: BorderRadius.circular(10),
+          //                 color: Color(0xFF6282C2)),
+          //           ),
+          //           Icon(
+          //             Icons.calendar_month,
+          //             color: Colors.white,
+          //             size: 18 * _widthScale,
+          //           )
+          //         ]),
+          //         SizedBox(
+          //           width: 8 * _widthScale,
+          //         ),
+          //         Text(
+          //           'Wed, 16 Feb - 06:00 pm → Thu, 17 F...',
+          //           style: GoogleFonts.notoSans(color: Colors.white),
+          //         )
+          //       ],
+          //     ),
+          //   ),
+          // ),
+          SizedBox(
+            height: 20 * _heightScale,
+          ),
+          Container(
+            height: 54 * _heightScale,
+            width: 350 * _widthScale,
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(18),
+                color: Colors.white),
+            child: Text(
+              'Find Cars',
+              style: GoogleFonts.notoSans(
+                  color: Color(0xFF0C3867),
+                  fontSize: 16 * _widthScale,
+                  fontWeight: FontWeight.w400),
             ),
           )
         ],
@@ -269,197 +343,198 @@ class _HoemScreenState extends State<HoemScreen> {
     );
   }
 
-  bottom() {
+  panel() {
     const double kDesignWidth = 375;
     const double kDesignHeight = 812;
     double _widthScale = MediaQuery.of(context).size.width / kDesignWidth;
     double _heightScale = MediaQuery.of(context).size.height / kDesignHeight;
-    return showModalBottomSheet(
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(_widthScale * 25),
-          topRight: Radius.circular(_widthScale * 25),
-        )),
-        context: context,
-        isScrollControlled: true,
-        builder: (context) {
-          return Container(
-              child: Column(
+    return Container(
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              SizedBox(
+                height: 8 * _heightScale,
+              ),
+              Divider(
+                color: Colors.white,
+                thickness: 5 * _heightScale,
+                height: 5 * _heightScale,
+                indent: 138 * _widthScale,
+                endIndent: 138 * _widthScale,
+              ),
+              SizedBox(
+                height: 9 * _heightScale,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  SizedBox(
-                    height: 10 * _heightScale,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Container(
-                        height: 5 * _heightScale,
-                        width: 100 * _widthScale,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: Colors.white),
-                      )
-                    ],
-                  ),
-                  SizedBox(
-                    height: 9 * _heightScale,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                          'our services are only available in delhi right now.',
-                          style: GoogleFonts.notoSans(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w400,
-                              fontSize: 12 * _widthScale))
-                    ],
-                  ),
-                  SizedBox(
-                    height: 7 * _heightScale,
-                  ),
-                  Container(
-                    height: 50 * _heightScale,
-                    width: 350 * _widthScale,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10), color: blue22),
-                    child: Row(
-                      children: [
-                        SizedBox(
-                          width: 10 * _widthScale,
-                        ),
-                        Stack(alignment: Alignment.center, children: [
-                          Container(
-                            height: 33 * _heightScale,
-                            width: 33 * _widthScale,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                color: Color(0xFF6282C2)),
-                          ),
-                          Icon(
-                            Icons.location_on_outlined,
-                            color: Colors.white,
-                            size: 18 * _widthScale,
-                          )
-                        ]),
-                        SizedBox(
-                          width: 8 * _widthScale,
-                        ),
-                        Text(
-                          'NDM 1, Netaji Subhash Palace, New....',
-                          style: GoogleFonts.notoSans(color: Colors.white),
-                        )
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    height: 20 * _heightScale,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      SizedBox(
-                        width: 22.5 * _widthScale,
-                      ),
-                      Icon(
-                        Icons.my_location,
-                        color: Colors.white,
-                        size: 19 * _widthScale,
-                      ),
-                      SizedBox(width: 19.5 * _widthScale),
-                      Text('Current Location',
-                          style: GoogleFonts.notoSans(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w400,
-                              fontSize: 16 * _widthScale))
-                    ],
-                  ),
-                  SizedBox(
-                    height: 20 * _heightScale,
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: ((context) => MapSample())));
-                      // GoogleMap(
-                      //   mapType: MapType.hybrid,
-                      //   initialCameraPosition: _kGooglePlex,
-                      //   onMapCreated: (GoogleMapController controller) {
-                      //     _controller.complete(controller);
-                      //   },
-                      // );
-                    },
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        SizedBox(
-                          width: 22.5 * _widthScale,
-                        ),
-                        Icon(
-                          Icons.edit_location_alt_sharp,
+                  Text(
+                      'our services are only available in delhi right now.',
+                      style: GoogleFonts.notoSans(
                           color: Colors.white,
-                          size: 19 * _widthScale,
-                        ),
-                        SizedBox(width: 19.5 * _widthScale),
-                        Text('Set Location on Map',
-                            style: GoogleFonts.notoSans(
-                                color: Colors.white,
-                                fontWeight: FontWeight.w400,
-                                fontSize: 16 * _widthScale))
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    height: 20 * _heightScale,
-                  ),
-                  Container(
-                    height: 50 * _heightScale,
-                    width: 350 * _widthScale,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10), color: blue22),
-                    child: Row(
-                      children: [
-                        SizedBox(
-                          width: 10 * _widthScale,
-                        ),
-                        Stack(alignment: Alignment.center, children: [
-                          Container(
-                            height: 33 * _heightScale,
-                            width: 33 * _widthScale,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                color: Color(0xFF6282C2)),
-                          ),
-                          Icon(
-                            Icons.calendar_month,
-                            color: Colors.white,
-                            size: 18 * _widthScale,
-                          )
-                        ]),
-                        SizedBox(
-                          width: 8 * _widthScale,
-                        ),
-                        Text(
-                          'Wed, 16 Feb - 06:00 pm → Thu, 18 F...',
-                          style: GoogleFonts.notoSans(color: Colors.white),
-                        )
-                      ],
-                    ),
-                  ),
+                          fontWeight: FontWeight.w400,
+                          fontSize: 12 * _widthScale))
                 ],
               ),
-              height: 758 * _heightScale,
-              width: 375 * _widthScale,
-              decoration: BoxDecoration(
-                color: Color(0xFF4365A9),
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(_widthScale * 25),
-                  topRight: Radius.circular(_widthScale * 25),
+              SizedBox(
+                height: 7 * _heightScale,
+              ),
+              Container(
+                height: 50 * _heightScale,
+                width: 350 * _widthScale,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10), color: blue22),
+                child: Row(
+                  children: [
+                    SizedBox(
+                      width: 10 * _widthScale,
+                    ),
+                    Stack(alignment: Alignment.center, children: [
+                      Container(
+                        height: 33 * _heightScale,
+                        width: 33 * _widthScale,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Color(0xFF6282C2)),
+                      ),
+                      Icon(
+                        Icons.location_on_outlined,
+                        color: Colors.white,
+                        size: 18 * _widthScale,
+                      )
+                    ]),
+                    SizedBox(
+                      width: 8 * _widthScale,
+                    ),
+                    Text(
+                      'NDM 1, Netaji Subhash Palace, New....',
+                      style: GoogleFonts.notoSans(color: Colors.white),
+                    )
+                  ],
                 ),
-              ));
-        });
+              ),
+              SizedBox(
+                height: 20 * _heightScale,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    width: 22.5 * _widthScale,
+                  ),
+                  Icon(
+                    Icons.my_location,
+                    color: Colors.white,
+                    size: 19 * _widthScale,
+                  ),
+                  SizedBox(width: 19.5 * _widthScale),
+                  Text('Current Location',
+                      style: GoogleFonts.notoSans(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w400,
+                          fontSize: 16 * _widthScale))
+                ],
+              ),
+              SizedBox(
+                height: 20 * _heightScale,
+              ),
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: ((context) => MapSample())));
+                  // GoogleMap(
+                  //   mapType: MapType.hybrid,
+                  //   initialCameraPosition: _kGooglePlex,
+                  //   onMapCreated: (GoogleMapController controller) {
+                  //     _controller.complete(controller);
+                  //   },
+                  // );
+                },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      width: 22.5 * _widthScale,
+                    ),
+                    Icon(
+                      Icons.edit_location_alt_sharp,
+                      color: Colors.white,
+                      size: 19 * _widthScale,
+                    ),
+                    SizedBox(width: 19.5 * _widthScale),
+                    Text('Set Location on Map',
+                        style: GoogleFonts.notoSans(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w400,
+                            fontSize: 16 * _widthScale))
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 20 * _heightScale,
+              ),
+              Container(
+                height: 50 * _heightScale,
+                width: 350 * _widthScale,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10), color: blue22),
+                child: Row(
+                  children: [
+                    SizedBox(
+                      width: 10 * _widthScale,
+                    ),
+                    Stack(alignment: Alignment.center, children: [
+                      Container(
+                        height: 33 * _heightScale,
+                        width: 33 * _widthScale,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Color(0xFF6282C2)),
+                      ),
+                      Icon(
+                        Icons.calendar_month,
+                        color: Colors.white,
+                        size: 18 * _widthScale,
+                      )
+                    ]),
+                    SizedBox(
+                      width: 8 * _widthScale,
+                    ),
+                    Text(
+                      'Wed, 16 Feb - 06:00 pm → Thu, 18 F...',
+                      style: GoogleFonts.notoSans(color: Colors.white),
+                    )
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 7 * _heightScale,
+              ),
+              Container(
+                width: 345 * _widthScale,
+                height: 316 * _heightScale,
+                child: SfDateRangePicker(
+                  view: DateRangePickerView.month,
+                  monthViewSettings: DateRangePickerMonthViewSettings(
+                    firstDayOfWeek: 1,
+                  ),
+                  todayHighlightColor: Colors.white,
+                ),
+              ),
+            ],
+          ),
+        ),
+        height: 758 * _heightScale,
+        width: 375 * _widthScale,
+        decoration: BoxDecoration(
+          color: Color(0xFF4365A9),
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(_widthScale * 25),
+            topRight: Radius.circular(_widthScale * 25),
+          ),
+        ));
   }
 
   Widget profile() {
