@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:zeta/screens/car_screen.dart';
 import 'package:zeta/themes/color.dart';
 
 class Available_rides extends StatefulWidget {
@@ -206,7 +207,11 @@ class _Available_ridesState extends State<Available_rides> {
                 padding: EdgeInsets.symmetric(horizontal: 13 * _widthScale),
                 children: [
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(builder: (_)=>Car_Screen())
+                      );
+                    },
                     child: Container(
                       margin: EdgeInsets.symmetric(vertical: 10 * _widthScale),
                       height: 165.52 * _widthScale,
@@ -370,7 +375,11 @@ class _Available_ridesState extends State<Available_rides> {
                               margin: EdgeInsets.only(bottom: 13 * _widthScale),
                               height: 93 * _widthScale,
                               width: 167 * _widthScale,
-                              child: Image.asset("assets/car.png")
+                              // Add index form builder in tag and pass index onto next page for hero animation
+                              child: Hero(
+                                tag: 'car',
+                                child: Image.asset("assets/car.png")
+                              )
                             )
                           ),
                         ],
