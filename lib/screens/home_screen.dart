@@ -5,7 +5,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
+import 'package:time_range/time_range.dart';
 import 'package:zeta/main.dart';
+import 'package:zeta/themes/color.dart';
 import 'package:zeta/themes/color.dart';
 
 class HoemScreen extends StatefulWidget {
@@ -20,6 +22,13 @@ class _HoemScreenState extends State<HoemScreen> {
   bool islo = false;
 
   DateTime dt = DateTime.now();
+  late TimeOfDay pickup, drop;
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     const double kDesignWidth = 375;
@@ -58,7 +67,7 @@ class _HoemScreenState extends State<HoemScreen> {
       body: SlidingUpPanel(
         body: body(),
         panelSnapping: true,
-        maxHeight: 758 * _heightScale,
+        maxHeight: 703 * _heightScale,
         minHeight: 240 * _heightScale,
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(_widthScale * 25),
@@ -77,6 +86,7 @@ class _HoemScreenState extends State<HoemScreen> {
     double _heightScale = MediaQuery.of(context).size.height / kDesignHeight;
     return SingleChildScrollView(
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(height: 13 * _heightScale),
           Padding(
@@ -345,7 +355,7 @@ class _HoemScreenState extends State<HoemScreen> {
 
   panel() {
     const double kDesignWidth = 375;
-    const double kDesignHeight = 812;
+    const double kDesignHeight = 758;
     double _widthScale = MediaQuery.of(context).size.width / kDesignWidth;
     double _heightScale = MediaQuery.of(context).size.height / kDesignHeight;
     return Container(
@@ -517,16 +527,91 @@ class _HoemScreenState extends State<HoemScreen> {
                 height: 316 * _heightScale,
                 child: SfDateRangePicker(
                   view: DateRangePickerView.month,
+                  headerStyle: DateRangePickerHeaderStyle(
+                    textStyle: TextStyle(
+                      color: Colors.white
+                    )
+                  ),
+                  monthCellStyle: DateRangePickerMonthCellStyle(
+                    weekendTextStyle: TextStyle(
+                      color: Colors.white,
+                        fontSize: 16.0,
+                        fontWeight: FontWeight.w500
+                    ),
+                    textStyle: TextStyle(
+                      color: Colors.white,
+                        fontSize: 16.0,
+                        fontWeight: FontWeight.w500
+                    )
+                  ),
                   monthViewSettings: DateRangePickerMonthViewSettings(
                     firstDayOfWeek: 1,
                   ),
                   todayHighlightColor: Colors.white,
+                  selectionMode: DateRangePickerSelectionMode.extendableRange,
+                  rangeSelectionColor: Color(0xff91AFE5),
+                  rangeTextStyle: TextStyle(
+                    color: Colors.white,
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.w500
+                  ),
+                  startRangeSelectionColor: Color(0xff244F9D),
+                  endRangeSelectionColor: Color(0xff244F9D),
+                  enablePastDates: false,
                 ),
               ),
+              TimeRange(
+                fromTitle: Text('From', style: TextStyle(fontSize: 18, color: Colors.white),),
+                toTitle: Text('To', style: TextStyle(fontSize: 18, color: Colors.white),),
+                titlePadding: 20,
+                textStyle: TextStyle(fontWeight: FontWeight.normal, color: Colors.white),
+                activeTextStyle: TextStyle(fontWeight: FontWeight.bold, color: blue22),
+                backgroundColor: Colors.transparent,
+                activeBackgroundColor: white,
+                firstTime: TimeOfDay(hour: 09, minute: 00),
+                lastTime: TimeOfDay(hour: 22, minute: 00),
+                timeStep: 30,
+                timeBlock: 30,
+                onRangeCompleted: (range) {
+                  setState(() {
+                    pickup = range!.start;
+                    drop = range.end;
+                    print(pickup.toString() + drop.toString());
+                  });
+                },
+              ),
+              SizedBox(
+                height: 14 * _heightScale,
+              ),
+              Container(
+                height: 54 * _heightScale,
+                width: 350 * _widthScale,
+                child: ElevatedButton(
+                  onPressed: () {},
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.white,
+                    shape: new RoundedRectangleBorder(
+                      borderRadius:
+                      new BorderRadius.circular(_widthScale * 10.0),
+                    ),
+                  ),
+                  child: Text('Find Cars',
+                    style: GoogleFonts.notoSans(
+                      textStyle: TextStyle(
+                        color: Color(0xff0C3867),
+                          fontSize: _widthScale * 16,
+                      ),
+                  ),
+                ),
+              ),
+              ),
+              SizedBox(
+                height: 23 * _heightScale,
+              )
             ],
           ),
         ),
-        height: 758 * _heightScale,
+        height: 812 * _heightScale,
         width: 375 * _widthScale,
         decoration: BoxDecoration(
           color: Color(0xFF4365A9),
