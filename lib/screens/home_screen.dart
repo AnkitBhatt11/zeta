@@ -7,6 +7,7 @@ import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 import 'package:time_range/time_range.dart';
 import 'package:zeta/main.dart';
+import 'package:zeta/screens/available_ride.dart';
 import 'package:zeta/themes/color.dart';
 import 'package:zeta/themes/color.dart';
 
@@ -587,7 +588,11 @@ class _HoemScreenState extends State<HoemScreen> {
                 height: 54 * _heightScale,
                 width: 350 * _widthScale,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(builder: (_)=> Available_rides())
+                    );
+                  },
                   style: ElevatedButton.styleFrom(
                     primary: Colors.white,
                     shape: new RoundedRectangleBorder(
