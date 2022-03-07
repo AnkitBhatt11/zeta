@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:slide_to_confirm/slide_to_confirm.dart';
 import 'package:zeta/screens/payment_method.dart';
 import 'package:zeta/themes/color.dart';
+import 'package:zeta/widget/slide_button.dart';
 
 class Payment_Summary extends StatefulWidget {
   const Payment_Summary({Key? key}) : super(key: key);
@@ -304,17 +304,13 @@ class _Payment_SummaryState extends State<Payment_Summary> {
                           width: 21,
                         ),
                         Expanded(
-                          child: ConfirmationSlider(
-                            onConfirmation: () {
+                          child: AnimatedSwipeToConfirm(
+                            onConfirm: (){
                               Navigator.of(context).push(
-                                MaterialPageRoute(builder: (_)=> Payment_Method())
+                                  MaterialPageRoute(builder: (_)=> Payment_Method())
                               );
                             },
-                            height: 50.0,
-                            text: "PROCEED TO PAY",
-                            foregroundColor: Color(0xff244F9D),
-                            backgroundShape: BorderRadius.circular(10),
-                            foregroundShape: BorderRadius.circular(10),
+                            onCancel: () {},
                           ),
                         ),
                       ],
