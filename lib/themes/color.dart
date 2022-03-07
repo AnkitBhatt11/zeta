@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 const white = Colors.white;
 const black = Colors.black;
@@ -24,3 +25,4 @@ const text10 = Color(0xFF96969B);
 const text11 = Color(0XFF5A5A5A);
 const text12 = Color(0xFFB6B6B6);
 const text13 = Color(0xFFCCCCCC);
+const scaffoldbgColor = Color(0xffEDF2FA);
