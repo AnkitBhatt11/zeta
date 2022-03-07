@@ -15,7 +15,7 @@
 //   var val;
 
 //   @override
-//   Widget build(BuildContext context) {
+//   widget build(BuildContext context) {
 //     // chooseLogin();
 //     print("ddd ${val}");
 //     const double kDesignWidth = 375;
@@ -24,21 +24,21 @@
 //     double _heightScale = MediaQuery.of(context).size.height / kDesignHeight;
 //     var size = MediaQuery.of(context).size;
 
-//     Widget spacevert6 = SizedBox(height: size.height * 0.12);
+//     widget spacevert6 = SizedBox(height: size.height * 0.12);
 
-//     Widget spacehort = SizedBox(
+//     widget spacehort = SizedBox(
 //       width: size.width * 0.1,
 //     );
-//     // Widget spacehort1 = SizedBox(
+//     // widget spacehort1 = SizedBox(
 //     //   width: size.width * 0.07,
 //     // );
-//     // Widget spacevert1 = SizedBox(
+//     // widget spacevert1 = SizedBox(
 //     //   height: size.height * 0.0038,
 //     // );
-//     // Widget spacevert2 = SizedBox(
+//     // widget spacevert2 = SizedBox(
 //     //   height: size.height * 0.1,
 //     // );
-//     // Widget spacevert3 = SizedBox(
+//     // widget spacevert3 = SizedBox(
 //     //   height: size.height * 0.07,
 //     // );
 //     return Container(

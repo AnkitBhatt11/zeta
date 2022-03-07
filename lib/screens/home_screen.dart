@@ -11,14 +11,14 @@ import 'package:zeta/screens/available_ride.dart';
 import 'package:zeta/themes/color.dart';
 import 'package:zeta/themes/color.dart';
 
-class HoemScreen extends StatefulWidget {
-  const HoemScreen({Key? key}) : super(key: key);
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({Key? key}) : super(key: key);
 
   @override
-  _HoemScreenState createState() => _HoemScreenState();
+  _HomeScreenState createState() => _HomeScreenState();
 }
 
-class _HoemScreenState extends State<HoemScreen> {
+class _HomeScreenState extends State<HomeScreen> {
 
   bool islo = false;
 

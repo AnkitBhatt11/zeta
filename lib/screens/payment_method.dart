@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:zeta/screens/payment_confirmation.dart';
 import 'package:zeta/themes/color.dart';
 
 class Payment_Method extends StatefulWidget {
@@ -38,6 +39,9 @@ class _Payment_MethodState extends State<Payment_Method> {
             height: 10,
           ),
           ListTile(
+            onTap: () {
+              Navigator.push(context, MaterialPageRoute(builder: (_)=> Payment_Confirm()));
+            },
             tileColor: white,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10)

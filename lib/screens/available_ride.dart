@@ -46,52 +46,55 @@ class _Available_ridesState extends State<Available_rides> {
               SizedBox(
                 height: 20 * _heightScale,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  SizedBox(
-                    height: 50 * _widthScale,
-                    width: 300 * _widthScale,
-                    child: TextFormField(
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20.0),
-                          borderSide: BorderSide(color: Color(0xff517194), width: 1)
-                        ),
-                        enabledBorder: OutlineInputBorder(
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 13),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    SizedBox(
+                      height: 50 * _widthScale,
+                      width: 300 * _widthScale,
+                      child: TextFormField(
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(20.0),
                             borderSide: BorderSide(color: Color(0xff517194), width: 1)
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20.0),
+                              borderSide: BorderSide(color: Color(0xff517194), width: 1)
+                          ),
+                          errorBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20.0),
+                              borderSide: BorderSide(color: Color(0xff517194), width: 1)
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20.0),
+                              borderSide: BorderSide(color: Color(0xff517194), width: 1)
+                          ),
+                          hintText: "Search any Car",
+                          hintStyle: GoogleFonts.notoSans(
+                            color: Color(0xff517194),
+                            fontSize: 12 * _widthScale
+                          ),
+                          prefixIcon: Icon(
+                              Icons.search,
+                            color: Color(0xff517194),
+                          )
                         ),
-                        errorBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(20.0),
-                            borderSide: BorderSide(color: Color(0xff517194), width: 1)
+                        style: GoogleFonts.notoSans(
+                          fontSize: 12 * _widthScale,
+                          color: Color(0xff517194)
                         ),
-                        focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(20.0),
-                            borderSide: BorderSide(color: Color(0xff517194), width: 1)
-                        ),
-                        hintText: "Search any Car",
-                        hintStyle: GoogleFonts.notoSans(
-                          color: Color(0xff517194),
-                          fontSize: 12 * _widthScale
-                        ),
-                        prefixIcon: Icon(
-                            Icons.search,
-                          color: Color(0xff517194),
-                        )
-                      ),
-                      style: GoogleFonts.notoSans(
-                        fontSize: 12 * _widthScale,
-                        color: Color(0xff517194)
-                      ),
-                    )
-                  ),
-                  IconButton(
-                    icon: Image.asset("assets/filtericon.png"),
-                    iconSize: 26 * _widthScale,
-                    onPressed: () {},
-                  ),
-                ],
+                      )
+                    ),
+                    IconButton(
+                      icon: Image.asset("assets/filtericon.png"),
+                      iconSize: 26 * _widthScale,
+                      onPressed: () {},
+                    ),
+                  ],
+                ),
               ),
               SizedBox(
                 height: 20 * _heightScale,

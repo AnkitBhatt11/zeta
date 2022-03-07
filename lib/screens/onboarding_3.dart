@@ -66,7 +66,7 @@ class _OnBoardingScreen3State extends State<OnBoardingScreen3> {
             child: ElevatedButton(
                 onPressed: () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => HoemScreen()));
+                      MaterialPageRoute(builder: (context) => HomeScreen()));
                 },
                 style: ElevatedButton.styleFrom(
                   primary: blue22,
